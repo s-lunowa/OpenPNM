@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Cubic &#8212; OpenPNM  documentation</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -41,7 +42,10 @@
     <link rel="next" title="CubicDual" href="cubic_dual.html" />
     <link rel="prev" title="GenericNetwork" href="generic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -257,7 +261,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../geometry/stick_and_ball.html">
-     StickAndBall
+     SpheresAndCylinders
     </a>
    </li>
   </ul>
@@ -604,7 +608,7 @@
               
               <div>
                 
-  <div class="section" id="cubic">
+  <section id="cubic">
 <span id="cubic-api"></span><h1>Cubic<a class="headerlink" href="#cubic" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="openpnm.network.Cubic">
@@ -704,41 +708,9 @@ instance if boundary pores have already added to other faces.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="openpnm.network.Cubic.from_array">
-<span class="sig-name descname"><span class="pre">from_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpnm/network/Cubic.html#Cubic.from_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openpnm.network.Cubic.from_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply data to the network based on a rectangular array filled with
-values.  Each array location corresponds to a pore in the network.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<em>array_like</em>) – The rectangular array containing the values to be added to the
-network. This array must be the same shape as the original network.</p></li>
-<li><p><strong>propname</strong> (<em>string</em>) – The name of the pore property being added.</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="openpnm.network.Cubic.to_array">
-<span class="sig-name descname"><span class="pre">to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpnm/network/Cubic.html#Cubic.to_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openpnm.network.Cubic.to_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts the values to a rectangular array with the same shape as the
-network</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>values</strong> (<em>array_like</em>) – An Np-long array of values to convert to</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This method can break on networks that have had boundaries added.  It
-will usually work IF the given values came only from ‘internal’
-pores.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
+</section>
 
 
               </div>
@@ -750,20 +722,19 @@ pores.</p>
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021 OpenPNM Team.<br/>
+    &copy; Copyright 2021 OpenPNM Team.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
 </p>
     </div>
     

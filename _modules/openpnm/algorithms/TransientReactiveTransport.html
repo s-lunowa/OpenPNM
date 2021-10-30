@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>openpnm.algorithms.TransientReactiveTransport &#8212; OpenPNM  documentation</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +23,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -39,7 +39,10 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -288,48 +291,9 @@
         <span class="c1"># Initialize the steady sys of eqs A matrix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_A_steady</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">phase</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">phase</span><span class="o">=</span><span class="n">phase</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;phase&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase</span><span class="o">.</span><span class="n">name</span>
         <span class="c1"># Initialize the initial condition</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;pore.ic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<div class="viewcode-block" id="TransientReactiveTransport.setup"><a class="viewcode-back" href="../../../modules/algorithms/transient_reactive_transport.html#openpnm.algorithms.TransientReactiveTransport.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">conductance</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-              <span class="n">t_initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-              <span class="n">t_tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_scheme</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This method takes several arguments that are essential to running the</span>
-<span class="sd">        algorithm and adds them to the settings</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        More settings can be adjusted in the presence of a non-linear source</span>
-<span class="sd">        term such as under-relaxation.</span>
-<span class="sd">        See the &#39;ReactiveTransport&#39; class documentation for details.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">phase</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;phase&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">if</span> <span class="n">quantity</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantity</span>
-        <span class="k">if</span> <span class="n">conductance</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;conductance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conductance</span>
-        <span class="k">if</span> <span class="n">t_initial</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_initial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_initial</span>
-        <span class="k">if</span> <span class="n">t_final</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_final&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_final</span>
-        <span class="k">if</span> <span class="n">t_step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_step&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_step</span>
-        <span class="k">if</span> <span class="n">t_output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_output</span>
-        <span class="k">if</span> <span class="n">t_tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_tolerance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_tolerance</span>
-        <span class="k">if</span> <span class="n">t_precision</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_precision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_precision</span>
-        <span class="k">if</span> <span class="n">t_scheme</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;t_scheme&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_scheme</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TransientReactiveTransport.set_IC"><a class="viewcode-back" href="../../../modules/algorithms/transient_reactive_transport.html#openpnm.algorithms.TransientReactiveTransport.set_IC">[docs]</a>    <span class="k">def</span> <span class="nf">set_IC</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
@@ -688,20 +652,19 @@
       </div>
     </div>
   
-  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021 OpenPNM Team.<br/>
+    &copy; Copyright 2021 OpenPNM Team.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
 </p>
     </div>
     

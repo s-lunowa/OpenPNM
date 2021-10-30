@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ModelsMixin &#8212; OpenPNM  documentation</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -41,7 +42,10 @@
     <link rel="next" title="ModelsDict" href="modelsdict.html" />
     <link rel="prev" title="Subdomain" href="subdomain.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -257,7 +261,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../geometry/stick_and_ball.html">
-     StickAndBall
+     SpheresAndCylinders
     </a>
    </li>
   </ul>
@@ -604,7 +608,7 @@
               
               <div>
                 
-  <div class="section" id="modelsmixin">
+  <section id="modelsmixin">
 <span id="modelsmixin-api"></span><h1>ModelsMixin<a class="headerlink" href="#modelsmixin" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="openpnm.core.ModelsMixin">
@@ -642,42 +646,6 @@ contains all of the models and their parameters.</p>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpnm</span> <span class="k">as</span> <span class="nn">op</span>
-</pre></div>
-</div>
-<p>Create a Demo class using Base and ModelsMixin:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Base</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">ModelsMixin</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">pass</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">(</span><span class="n">Np</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">Nt</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The new class has the normal Base methods:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">num_pores</span><span class="p">())</span>
-<span class="go">3</span>
-</pre></div>
-</div>
-<p>But also has those needed for working with models.  For instance, a
-simple model can be added as follows:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span><span class="o">.</span><span class="n">add_model</span><span class="p">(</span><span class="n">propname</span><span class="o">=</span><span class="s1">&#39;pore.test&#39;</span><span class="p">,</span>
-<span class="gp">... </span>               <span class="n">model</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">constant</span><span class="p">,</span>
-<span class="gp">... </span>               <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;pore.test&#39;</span><span class="p">])</span>
-<span class="go">[2 2 2]</span>
-</pre></div>
-</div>
-<p>All the models and their respective parameters are stored in the
-<code class="docutils literal notranslate"><span class="pre">models</span></code> attribute:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">models</span><span class="p">)</span>
-<span class="go">―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</span>
-<span class="go">#   Property Name                       Parameter                 Value</span>
-<span class="go">―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</span>
-<span class="go">1   pore.test                           model:                    constant</span>
-<span class="go">                                        value:                    2</span>
-<span class="go">                                        regeneration mode:        normal</span>
-<span class="go">―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</span>
-</pre></div>
-</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="openpnm.core.ModelsMixin.add_model">
 <span class="sig-name descname"><span class="pre">add_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regen_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpnm/core/ModelsMixin.html#ModelsMixin.add_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openpnm.core.ModelsMixin.add_model" title="Permalink to this definition">¶</a></dt>
@@ -750,7 +718,7 @@ already exist.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
               </div>
@@ -762,20 +730,19 @@ already exist.</p>
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021 OpenPNM Team.<br/>
+    &copy; Copyright 2021 OpenPNM Team.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
 </p>
     </div>
     
