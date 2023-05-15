@@ -3,10 +3,7 @@ import sys
 import codecs
 import os.path
 from distutils.util import convert_path
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 
 sys.path.append(os.getcwd())
 ver_path = convert_path('openpnm/__version__.py')
@@ -22,7 +19,10 @@ def get_version(rel_path):
     for line in read(rel_path).splitlines():
         if line.startswith('__version__'):
             delim = '"' if '"' in line else "'"
-            return line.split(delim)[1]
+            ver = line.split(delim)[1].split(".")
+            if "dev0" in ver:
+                ver.remove("dev0")
+            return ".".join(ver)
     else:
         raise RuntimeError("Unable to find version string.")
 
@@ -47,54 +47,33 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Physics'
     ],
-    packages=[
-        'openpnm',
-        'openpnm.core',
-        'openpnm.network',
-        'openpnm.geometry',
-        'openpnm.phases',
-        'openpnm.phases.mixtures',
-        'openpnm.phases.mixtures.species.ions',
-        'openpnm.phases.mixtures.species.liquids',
-        'openpnm.phases.mixtures.species.gases',
-        'openpnm.physics',
-        'openpnm.utils',
-        'openpnm.io',
-        'openpnm.models',
-        'openpnm.models.topology',
-        'openpnm.models.misc',
-        'openpnm.models.geometry',
-        'openpnm.models.phases',
-        'openpnm.models.physics',
-        'openpnm.algorithms',
-        'openpnm.algorithms.metrics',
-        'openpnm.topotools',
-        'openpnm.materials',
-    ],
+    packages=find_packages("."),
     install_requires=[
-        'numpy>=1.15',
-        'scipy>=1.1',
-        'scikit-image>=0.14',
-        'networkx>=2',
-        'h5py>=2.8',
-        'sympy',
-        'matplotlib',
-        'pandas',
-        'numba',
-        'transforms3d',
-        'flatdict',
-        'gitpython',
-        'jsonschema',
-        'terminaltables',
+        'chemicals',
         'docrep',
-        'json-tricks',
+        'h5py',
+        'jsonschema',
+        'matplotlib',
+        'networkx',
+        'numba',
+        'numpy',
+        'pandas',
+        'pyamg',
+        'pypardiso',
+        'rich',
+        'scikit-image',
+        'scipy',
+        'sympy',
+        'thermo',
+        'tqdm',
+        'transforms3d',
     ],
     author='OpenPNM Team',
     author_email='jgostick@uwaterloo.ca',
     download_url='https://github.com/PMEAL/OpenPNM/',
     url='http://openpnm.org',
     project_urls={
-        'Documentation': 'https://pmeal.github.io/OpenPNM',
+        'Documentation': 'https://openpnm.org',
         'Source': 'https://github.com/PMEAL/OpenPNM',
         'Tracker': 'https://github.com/PMEAL/OpenPNM/issues',
     },
