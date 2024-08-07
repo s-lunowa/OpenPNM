@@ -1,13 +1,15 @@
 import logging
 import sys
-
 import numpy as np
 from numpy.linalg import norm
-from scipy.optimize._nonlin import TerminationCondition  # Fix: import from _nonlin.py for compatibility with scipy >=1.14, should be addressed more sustainable
+try:  # For scipy < 1.14
+    from scipy.optimize.nonlin import TerminationCondition
+except ImportError:  # For newer Scipy
+    from scipy.optimize._nonlin import TerminationCondition
 from tqdm.auto import tqdm
-
 from openpnm.algorithms import Transport
 from openpnm.utils import Docorator, TypedList
+
 
 __all__ = ["ReactiveTransport"]
 
